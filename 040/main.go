@@ -5,15 +5,17 @@
 // 1- The message from the channel
 // 2- A timeout with the "time.After(3 * time.Second)" statement. After timeout happens, print "Timeout!!!!"
 
-
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 func timeout(c chan string){
 	for {
-		
+		time.Sleep(10*time.Second)
+		c <- "10 seconds passed"
 	}
 }
 
@@ -23,7 +25,10 @@ func main () {
 	go timeout(c1)
 	for {
 		select {
-		
+		case <- c1:
+			fmt.Print(<- c1)
+		case <- time.After(3 * time.Second):
+			fmt.Print("Timeout!")
 		}
 	}
 	fmt.Println("Goroutines finished.") // You shouldn't see this message as the goroutines run forever!

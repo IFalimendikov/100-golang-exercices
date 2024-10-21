@@ -8,7 +8,7 @@
 package main
 
 import "fmt"
-import "time"
+// import "time"
 
 
 func pop_message (c chan string){
@@ -17,8 +17,14 @@ func pop_message (c chan string){
 }
 func main () {
 	// Your code goes here
+	c1 := make(chan string, 4)
 
+	// for i := 0; i < 4; i++ {
+	// 	c1 <- "Hey!"
+	// }
+
+	pop_message(c1)
 
 	// this sleep is in order to not exit the program sooner than the routine lifetime :)
-	time.Sleep(1 * time.Second)
+	// time.Sleep(1 * time.Second)
 }

@@ -10,6 +10,14 @@ package main
 
 import "fmt"
 
+func receive(ch <- chan string) {
+	str := <- ch
+	fmt.Print(str)
+}
+
 func main () {
-	
+	c1 := make(chan string, 1)
+
+	c1 <- "Hey"
+	receive(c1)
 }

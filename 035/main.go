@@ -19,6 +19,7 @@ func task(done chan bool) {
 func main () {
 	var done chan bool = make(chan bool)	
 	go task(done)
+    <- done
 
 	// Your code goes here
 	

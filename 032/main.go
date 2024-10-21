@@ -18,7 +18,8 @@ func counter(x int) {
 
 func main () {
 	// Your code goes here
-	
+	go counter(1)
+	counter(2)
 
 	// this sleep is in order to not exit the program sooner than the routine lifetime :)
 	time.Sleep(5 * time.Second)
